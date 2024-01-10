@@ -6,9 +6,8 @@
   <title>Receiving Page</title>
   <script>
     function receiveHour() {
-      // Parse URL parameters
-      const urlParams = new URLSearchParams(window.location.search);
-      const receivedHour = urlParams.get('hour');
+      // Retrieve the current hour from localStorage
+      const receivedHour = localStorage.getItem("currentHour");
 
       if (receivedHour !== null) {
         document.getElementById("hourInput").value = receivedHour;
