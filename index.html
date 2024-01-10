@@ -6,19 +6,21 @@
   <title>Receiving Page</title>
   <script>
     function receiveHour() {
-      var receivedHour = document.getElementById("hourInput").value;
-      console.log('Received hour:', receivedHour);
-      // Perform any additional processing here
+      // Parse URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const receivedHour = urlParams.get('hour');
+
+      if (receivedHour !== null) {
+        document.getElementById("hourInput").value = receivedHour;
+        console.log('Received hour:', receivedHour);
+        // Perform any additional processing here
+      }
     }
   </script>
 </head>
-<body>
+<body onload="receiveHour()">
   <h1>Receiving Page</h1>
   <label for="hourInput">Received Hour:</label>
   <input type="text" id="hourInput" readonly>
-  <script>
-    // Call the receiveHour function on page load to handle potential URL parameters
-    window.onload = receiveHour;
-  </script>
 </body>
 </html>
