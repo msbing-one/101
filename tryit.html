@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Website Onload</title>
+    <script>
+        const targetHour = 3;
+        const targetMinute = 30;
+        const numTabs = 4; // Number of times to open the website
+        const interval = 6000; // Interval between each opening in milliseconds
+        const delay = 2000; // Time to wait before closing the opened tab
+
+        function openTabAndClose(url) {
+            var newTab = window.open(url, "_blank");
+            setTimeout(function() {
+                newTab.close();
+            }, delay);
+        }
+
+        function checkAndOpenWebsite() {
+            var now = new Date();
+            var currentHour = now.getHours();
+            var currentMinutes = now.getMinutes();
+
+            if (currentHour > targetHour || (currentHour === targetHour && currentMinutes >= targetMinute)) {
+                for (let i = 0; i < numTabs; i++) {
+                    setTimeout(function() {
+                        openTabAndClose("https://msbing-one.github.io/Hello-group-/");
+                    }, i * interval);
+                }
+            } else {
+                for (let i = 0; i < numTabs; i++) {
+                    setTimeout(function() {
+                        openTabAndClose("https://www.bing.com");
+                    }, i * interval);
+                }
+            }
+        }
+
+        window.onload = function() {
+            checkAndOpenWebsite();
+        };
+    </script>
+</head>
+<body>
+    <!-- This is optional since the page will redirect automatically -->
+    <p>The website will open automatically.</p>
+</body>
+</html>
